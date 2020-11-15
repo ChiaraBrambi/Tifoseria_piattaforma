@@ -1,11 +1,17 @@
+let stadioIcon;
+let trombaIcon;
+let tt = 'Happy Halloween';
+let tt2 = 'Quanto sei zuccone?  Urla Boooooo per far salire lo ZuccoMetro'
+let tt3 = '- ZuccoMetro'
+let tt4 = 'Press enter for result'
 function preload(){
-  // put preload code here
+stadioIcon = loadImage("./assets/stadio.png");
+trombaIcon = loadImage("./assets/trombetta.png");
 }
 
 function setup() {
   createCanvas(windowWidth,windowHeight)
-  // put setup code here
+background('Cultured');
 }
 
-function draw() {
-curveTightness(amount)}
+function draw() {}
