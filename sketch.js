@@ -56,21 +56,6 @@ function draw() {
 
   image(stadioIcon, pos*5, height / 7, stadioIcon.width / 7, stadioIcon.height / 7);//stadio
 
-  text( p_coord + '%' , pos, height / 5*4.5);//sx
-  console.log(' interazione ' + n_interazione);
-  console.log(' trombetta ' + n_trombetta);
-
-  //PER LA BARRA DELLA PERCENTUALE
-      //interazione utente, temporaneamente tasto ENTER
-      if (alt != 1 & keyIsDown(ENTER)) {
-        n_interazione += 4;// per far tornare la percentuale in pai alla trombetta
-        p_coord = round((n_interazione / n_trombetta)*100);
-      } else if (alt = 1) {
-        n_interazione = 0;
-        p_coord = 0;
-      }
-
-
 //BARRE GRIGIA E VIOLA
   fill('#D5D0D3');
   //barre grige
@@ -109,26 +94,41 @@ pop();
       rect(x+width/3.15,  height/2, 20, 20 * alt, 20);
     }
 
-  //cambio colore dle bottone centrale: feedback utente
-noFill( );
-  if(mouseIsPressed){//cambia schiacciando la trombetta
-      image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
-      stroke('#B7AEB5');
 
-      strokeWeight(5);
-      ellipse(width / 2, height /2, 90);//cerchio centrale
-  }else{
-    push()
-    image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7);// trombetta scura
-    stroke('#877B85');
-    strokeWeight(5);
-    ellipse(width / 2, height / 2, 90);//cerchio centrale
-    pop();
-    }
+      text( p_coord + '%' , pos, height / 5*4.5);//sx
+      console.log(' interazione ' + n_interazione);
+      console.log(' trombetta ' + n_trombetta);
 
+
+
+      //PER LA BARRA DELLA PERCENTUALE
+          //interazione utente, temporaneamente tasto ENTER
+          if (alt != 1 & keyIsDown(ENTER)) {
+            n_interazione += 4;// per far tornare la percentuale in pai alla trombetta
+            p_coord = round((n_interazione / n_trombetta)*100)*2;
+
+            push();
+            noFill();
+            image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
+            stroke('#B7AEB5');
+            strokeWeight(5);
+            ellipse(width / 2, height /2, 90);//cerchio centrale
+            pop();
+
+          } else if (alt = 1) {
+            n_interazione = 0;
+            p_coord = 0;
+
+            //cambio colore dle bottone centrale: feedback utente
+            push();
+            noFill();
+            image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7);// trombetta scura
+            stroke('#877B85');
+            strokeWeight(5);
+            ellipse(width / 2, height / 2, 90);//cerchio centrale
+            pop();
+          }
 }
-
-
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
