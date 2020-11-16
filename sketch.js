@@ -40,14 +40,14 @@ function draw() {
   fill('#877B85'); //4° colore PALETTE
   text('COOD O1', width / 2, height / 11);
 
-  textSize(18);
+  textSize(16);
   fill('#B7AEB5'); //3 PALETTE
-  text('Squadra1-Squdra2', width / 2, height / 8);
+    text('SQUADRA1-SQUADRA2', width / 2, height / 8);
 
   //testo laterale
-  textSize(15);
-  text('capienza', pos * 5, height / 5);
-  text('cordinazione', pos, height / 5);
+  textSize(14);
+  text('CAPIENZA', pos * 5, height / 5);
+  text('COORDINAZIONE', pos, height / 5);
 
   //percentuale
 
