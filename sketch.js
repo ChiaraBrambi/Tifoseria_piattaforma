@@ -3,6 +3,15 @@ let h;//altezza barra percentuale
 let pos;//posizione
 let palette = ['#F9F9F9', '#D5D0D3', '#B7AEB5', '#877B85'];
 
+//variabile suono trombetta
+let alt = 1; //h dei rettangoli suono
+let i = 0; //regola ogni quanto cambia alt
+let p_coord = 0; //var coordinazione
+
+let n_trombetta = 0.1; //var piattaforma: quando alt!=1 viene incrementata
+let n_interazione = 0.1; //var utente usa la trobetta, preme bottone
+//se faccio ntrombetta/niterazione trovo la coordinazione
+
 /////////////////////////////////////////////////////////////////////////
 
 function preload() {
@@ -13,11 +22,14 @@ function preload() {
 /////////////////////////////////////////////////////////////////////////
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  frameRate(22); //rallenta
+}
+/////////////////////////////////////////////////////////////////////////
+function draw() {
   background('#F9F9F9');//chiaro
-
   imageMode(CENTER);//per pittogrammi
   pos =  width / 6;//posizione oggetti
-
+  noStroke();
   //testo caratteristiche
   textFont('quicksand');
   textAlign(CENTER, TOP);
@@ -43,31 +55,46 @@ function setup() {
 
   image(stadioIcon, pos*5, height / 7, stadioIcon.width / 7, stadioIcon.height / 7);//stadio
 
-  //barre grige
+  h=200;//altezza barra %
   fill('#D5D0D3');
-  noStroke();
+
+  //barre grige
   rectMode(CENTER);
-  rect(width /6, height / 6*3.3 , 15, width / 3.5, 20); //rect(x,y,w,h,[tl])
-  rect(width /6*5 , height /  6*3.3 , 15, width / 3.5, 20);
+  rect(width /6, height / 6*3.3 , 20, width / 3.5, 20); //rect(x,y,w,h,[tl])
+  rect(width /6*5 , height /  6*3.3 , 20, width / 3.5, 20);
 
-  push();
-    angleMode(DEGREES);
-    noStroke();
-    //questo è fondamentale per dopo, quando la barra dovrà alzarsi e abbassarsi!
-    translate(width / 2, height / 2);//sposto all origine
-    rotate(180); //i vaori della posizione del rettangolosarenno poi invertiti, ma non capisco esattamente come funzionino
-    translate(-width / 2, -height / 2);//ritorna in posizione
+push();
+      //barre viola
+      rectMode(CORNER);
+      fill('#877B85');
+      rect(width /6-10, height / 6*3.3 + width /7 , 20, -h, 20);//BARRA SX
+      rect(width /6*5-10,  height / 6*3.3 + width /7 , 20, -h, 20);//BARRA DX
+pop();
 
+//barre laterali suono trombetta
+  if (frameCount % 50 == 0) { //multiplo di 50 incrementa i
+      i++
+    }
 
-    //barre viola
-    fill('#877B85');
-    rect(width / 2, height / 2 , 15, width / 4 / 2, 20);
-    rect(width / 2, height /2 , 15, width / 3.5 / 2, 20);
-    pop();
-}
-/////////////////////////////////////////////////////////////////////////
-function draw() {
-  
+//barrette lato sinistro
+    for (var x = width /6*1.5; x < width/2.2; x += 40) {
+      if (i % 2 != 0) { //quando i è dispari altezza deve diventare 1*random
+        alt = 1 * random(2, 10);
+        n_trombetta++;
+        console.log( n_trombetta);
+      } else {
+        alt = 1;
+        n_trombetta = 0.1;
+      }
+      //liniette suono della trombetta
+      noStroke();
+      fill(135, 123, 133);
+      rectMode(CENTER);
+      rect(x,  height/2, 20, 20 * alt, 20);
+      rect(x+width/3.15,  height/2, 20, 20 * alt, 20);
+    }
+
+  //cambio colore dle bottone centrale: feedback utente
 noFill( );
   if(mouseIsPressed){//cambia schiacciando la trombetta
       image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
@@ -84,6 +111,9 @@ noFill( );
     pop();
     }
 }
+
+
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
