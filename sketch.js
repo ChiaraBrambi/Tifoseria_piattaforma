@@ -111,21 +111,22 @@ function draw() {
     p_coord = 0;
   }
 
-  if (keyIsDown(ENTER)) {
+
+if (keyIsDown(ENTER)) {
     push();
-    noFill();
-    image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
+    fill('#877B85');
     stroke('#B7AEB5');
     strokeWeight(5);
     ellipse(width / 2, height / 2, 90); //cerchio centrale
+    image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
     pop();
   }else{//cambio colore dle bottone centrale: feedback utente
   push();
-  noFill();
-  image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7); // trombetta scura
+  fill('#B7AEB5');
   stroke('#877B85');
   strokeWeight(5);
   ellipse(width / 2, height / 2, 90); //cerchio centrale
+  image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7); // trombetta scura
   pop();}
 }
 
