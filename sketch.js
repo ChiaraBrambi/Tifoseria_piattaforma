@@ -15,8 +15,8 @@ let n_interazione = 0; //var utente usa la trobetta, preme bottone
 /////////////////////////////////////////////////////////////////////////
 
 function preload() {
-  stadioIcon = loadImage("./assets/immagini/stadio.png");
-  trombaIcon = loadImage("./assets/immagini/trombetta.png"); //trombetta chiara
+  stadioIcon = loadImage("./assets/immagini/stadio.png");//trombetta scura
+  trombaIcon = loadImage("./assets/immagini/trombettaBianca.png"); //trombetta chiara
   tscuraIcon = loadImage("./assets/immagini/tscura.png"); //trombetta chiara
   tut1Icon = loadImage("./assets/immagini/Trombetta_tut_1.png")//trombetta tutorial 1
   tut2Icon = loadImage("./assets/immagini/Trombetta_tut_2.gif")//trombetta tutorial 2
@@ -46,6 +46,7 @@ function draw() {
   textSize(16);
   fill('#B7AEB5'); //3 PALETTE
   text('SQUADRA1-SQUADRA2', width / 2, height / 8);
+
 
   //testo laterale
   textSize(14);
@@ -133,29 +134,32 @@ function draw() {
   // ellipse(width / 2, height / 2, 90); //cerchio centrale
   // pop();}
 
-
+  textSize(16);
+  fill('#B7AEB5'); //3 PALETTE
 //TUTORIAL TROMBETTA
 if(i== 0 || i==2){
 image(tut1Icon, width / 2, height / 2, tut1Icon.width / 7, tut1Icon.height / 7);
+text('TUTORIAL', width / 2, height / 6*3.5);
 } else if (i==1 || i==3){
 image(tut2Icon, width / 2, height / 2, tut2Icon.width / 7, tut2Icon.height / 7);
+text('TUTORIAL', width / 2, height / 6*3.5);
 }
 
 //ICONE NORMALI
 if (keyIsDown(ENTER) && i>3) {
     push();
     fill('#877B85');
-    stroke('#B7AEB5');
+    noStroke();
     strokeWeight(5);
-    ellipse(width / 2, height / 2, 90); //cerchio centrale
+    ellipse(width / 2, height / 2, 100); //cerchio centrale
     image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
     pop();
   }else if (keyIsDown(ENTER)==false && i>3){//cambio colore dle bottone centrale: feedback utente
   push();
-  fill('#B7AEB5');
+  noFill();
   stroke('#877B85');
   strokeWeight(5);
-  ellipse(width / 2, height / 2, 90); //cerchio centrale
+  ellipse(width / 2, height / 2, 100); //cerchio centrale
   image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7); // trombetta scura
   pop();}
 }
