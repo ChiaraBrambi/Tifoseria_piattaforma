@@ -1,4 +1,4 @@
-let stadioIcon, trombaIcon, tscuraIcon; //icone
+let stadioIcon, trombaIcon, tscuraIcon, tut1Icon, tut2Icon; //icone
 let h = 20; //altezza barra %;//altezza barra percentuale
 let pos; //posizione
 let palette = ['#F9F9F9', '#D5D0D3', '#B7AEB5', '#877B85'];
@@ -15,10 +15,13 @@ let n_interazione = 0; //var utente usa la trobetta, preme bottone
 /////////////////////////////////////////////////////////////////////////
 
 function preload() {
-  stadioIcon = loadImage("./assets/stadio.png");
-  trombaIcon = loadImage("./assets/trombetta.png"); //trombetta chiara
-  tscuraIcon = loadImage("./assets/tscura.png"); //trombetta chiara
+  stadioIcon = loadImage("./assets/immagini/stadio.png");
+  trombaIcon = loadImage("./assets/immagini/trombetta.png"); //trombetta chiara
+  tscuraIcon = loadImage("./assets/immagini/tscura.png"); //trombetta chiara
+  tut1Icon = loadImage("./assets/immagini/Trombetta_tut_1.png")//trombetta tutorial 1
+  tut2Icon = loadImage("./assets/immagini/Trombetta_tut_2.gif")//trombetta tutorial 2
 }
+
 /////////////////////////////////////////////////////////////////////////
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -112,7 +115,34 @@ function draw() {
   }
 
 
-if (keyIsDown(ENTER)) {
+//INSERITO DOPO
+  // if (keyIsDown(ENTER)) {
+  //   push();
+  //   noFill();
+  //   //image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
+  //   stroke('#B7AEB5');
+  //   strokeWeight(5);
+  //   ellipse(width / 2, height / 2, 90); //cerchio centrale
+  //   pop();
+  // }else{//cambio colore dle bottone centrale: feedback utente
+  // push();
+  // noFill();
+  // image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7); // trombetta scura
+  // stroke('#877B85');
+  // strokeWeight(5);
+  // ellipse(width / 2, height / 2, 90); //cerchio centrale
+  // pop();}
+
+
+//TUTORIAL TROMBETTA
+if(i== 0 || i==2){
+image(tut1Icon, width / 2, height / 2, tut1Icon.width / 7, tut1Icon.height / 7);
+} else if (i==1 || i==3){
+image(tut2Icon, width / 2, height / 2, tut2Icon.width / 7, tut2Icon.height / 7);
+}
+
+//ICONE NORMALI
+if (keyIsDown(ENTER) && i>3) {
     push();
     fill('#877B85');
     stroke('#B7AEB5');
@@ -120,7 +150,7 @@ if (keyIsDown(ENTER)) {
     ellipse(width / 2, height / 2, 90); //cerchio centrale
     image(trombaIcon, width / 2, height / 2, trombaIcon.width / 7, trombaIcon.height / 7);
     pop();
-  }else{//cambio colore dle bottone centrale: feedback utente
+  }else if (keyIsDown(ENTER)==false && i>3){//cambio colore dle bottone centrale: feedback utente
   push();
   fill('#B7AEB5');
   stroke('#877B85');
@@ -129,6 +159,10 @@ if (keyIsDown(ENTER)) {
   image(tscuraIcon, width / 2, height / 2, tscuraIcon.width / 7, tscuraIcon.height / 7); // trombetta scura
   pop();}
 }
+
+
+
+
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
